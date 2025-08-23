@@ -92,7 +92,8 @@ app.use("/api/students", require("./routes/subject"));
 
 
 
-app.use("/", studentRoutes);
+app.use("/api/students", studentRoutes);
+
 
 app.use("/api/attendance", attendanceRoutes); 
 

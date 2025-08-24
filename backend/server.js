@@ -1,32 +1,31 @@
+// server.js
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
 
-const Student = require("./models/student");
-const Attendance = require("./models/attanance");
+// Models
+const Subject = require("./models/subject");
+const createAttendanceModel = require("./models/attendanceModel");
 
-const Subject=require("./models/subject");
-const subjectRoutes = require('./routes/subroutes');
+// Routes
+const subjectRoutes = require("./routes/subroutes");
 const studentRoutes = require("./routes/studentRoutes");
-
-const createAttendanceModel = require('./models/attendanceModel');
 const attendanceRoutes = require("./routes/attendanceRoutes");
 
-
-
-
-
 const app = express();
+
+// Middleware
 app.use(express.json());
 app.use(
   cors({
-    origin:process.env.FRONTEND_URL,
+    origin: process.env.FRONTEND_URL || "*",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
 );
 
+// MongoDB Connection
 const MONGO_URI = process.env.MONGO_URI;
 
 mongoose
@@ -34,34 +33,35 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
+  .then(() => console.log("✅ MongoDB connected"))
+  .catch((err) => console.error("❌ MongoDB connection error:", err));
 
- 
-
-
-
-app.post('/api/subject/add', async (req, res) => {
+/**
+ * Add Subject API
+ * - Saves subject
+ * - Creates dynamic student{subjectId} and attendance{subjectId} collections
+ */
+app.post("/api/subject/add", async (req, res) => {
   try {
     const newSubject = new Subject(req.body);
     const savedSubject = await newSubject.save();
 
     const subjectId = savedSubject._id.toString();
-
-    // Create student collection if needed (optional — depends on your logic)
     const studentCollectionName = `student${subjectId}`;
     const attendanceCollectionName = `attendance${subjectId}`;
 
+    // Create attendance collection dynamically if not exists
     const existingAttendance = await mongoose.connection.db
       .listCollections({ name: attendanceCollectionName })
       .toArray();
 
     if (existingAttendance.length === 0) {
-      // Use getAttendanceModel with correct collection name
-      const attendanceModel = createAttendanceModel(attendanceCollectionName);
+      createAttendanceModel(attendanceCollectionName);
       await mongoose.connection.createCollection(attendanceCollectionName);
       console.log(`✅ Created attendance collection: ${attendanceCollectionName}`);
     }
 
-    // Do the same if you need to force-create student collection:
+    // Create student collection dynamically if not exists
     const existingStudent = await mongoose.connection.db
       .listCollections({ name: studentCollectionName })
       .toArray();
@@ -72,7 +72,7 @@ app.post('/api/subject/add', async (req, res) => {
     }
 
     res.status(201).json({
-      message: "Subject added successfully!",
+      message: "✅ Subject added successfully!",
       subject: savedSubject,
     });
   } catch (error) {
@@ -81,22 +81,11 @@ app.post('/api/subject/add', async (req, res) => {
   }
 });
 
+// Routes
+app.use("/api/subject", subjectRoutes); // subject routes
+app.use("/api/students", studentRoutes); // student routes
+app.use("/api/attendance", attendanceRoutes); // attendance routes
 
-//fetch Subjects
-app.use('/api/subject', subjectRoutes); //subject routes
-
-
-
-app.use("/api/students", require("./routes/subject"));
-
-
-
-
-app.use("/api/students", studentRoutes);
-
-
-app.use("/api/attendance", attendanceRoutes); 
-
-
+// Start Server
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));

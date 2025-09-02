@@ -1,0 +1,43 @@
+{
+  "pages": {
+    "/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/page.js"
+    ],
+    "/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/layout.css",
+      "static/chunks/app/layout.js"
+    ],
+    "/dashboard/add-subject/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/dashboard/add-subject/page.css",
+      "static/chunks/app/dashboard/add-subject/page.js"
+    ],
+    "/dashboard/add-subject/[collectionName]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/dashboard/add-subject/[collectionName]/page.css",
+      "static/chunks/app/dashboard/add-subject/[collectionName]/page.js"
+    ],
+    "/dashboard/add-subject/[collectionName]/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/add-subject/[collectionName]/layout.js"
+    ],
+    "/dashboard/add-subject/[collectionName]/attendance/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/add-subject/[collectionName]/attendance/page.js"
+    ],
+    "/dashboard/add-subject/[collectionName]/dash/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/dashboard/add-subject/[collectionName]/dash/page.css",
+      "static/chunks/app/dashboard/add-subject/[collectionName]/dash/page.js"
+    ]
+  }
+}

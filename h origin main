@@ -1,0 +1,19 @@
+* [33mcaa8311[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m new-commit
+* [33m8c12451[m[33m ([m[1;31morigin/main[m[33m)[m Remove node_modules from tracking and update .gitignore
+* [33mf08d739[m Upload all frontend and backend files
+* [33m2e0b295[m Resolved merge conflict in server.js and vercel.json
+* [33m1b20d23[m Keep vercel.json and resolve conflict
+* [33mf070050[m Update server.js
+* [33m7ade250[m Update vercel.json
+* [33m870eb0f[m Update vercel.json
+* [33m80fc7f2[m Update server.js
+[31m|[m * [33m9deba2d[m[33m ([m[1;35mrefs/stash[m[33m)[m WIP on main: 61a6d0e Initial commit
+[31m|[m[31m/[m[33m|[m 
+[31m|[m * [33mf91e5a5[m index on main: 61a6d0e Initial commit
+[31m|[m[31m/[m  
+* [33m61a6d0e[m Initial commit
+* [33m0080594[m Initial commit
+* [33mc15d584[m Attendace
+* [33mdee6c9f[m Attendace
+* [33m0a89cf3[m Attendace
+* [33m26df848[m Initial commit

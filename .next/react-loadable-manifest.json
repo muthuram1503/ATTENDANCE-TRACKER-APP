@@ -1,8 +1,0 @@
-{
-  "node_modules\\@kinde-oss\\kinde-auth-nextjs\\dist\\src\\frontend\\KindeBrowserClient.es.js -> ../session/refreshTokensServerAction.es.js": {
-    "id": "node_modules\\@kinde-oss\\kinde-auth-nextjs\\dist\\src\\frontend\\KindeBrowserClient.es.js -> ../session/refreshTokensServerAction.es.js",
-    "files": [
-      "static/chunks/_app-pages-browser_node_modules_kinde-oss_kinde-auth-nextjs_dist_src_session_refreshTokensSer-92de3c.js"
-    ]
-  }
-}
